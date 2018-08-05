@@ -1,15 +1,14 @@
 package com.zavier.feignconsumer.client;
 
 import com.zavier.feignconsumer.domain.User;
+import com.zavier.feignconsumer.service.HelloServiceFallback;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.jws.soap.SOAPBinding;
-
-@FeignClient("hello-server")
+@FeignClient(name = "hello-server", fallback = HelloServiceFallback.class)
 public interface ComputeClient {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
