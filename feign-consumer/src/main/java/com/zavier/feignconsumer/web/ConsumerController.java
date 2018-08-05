@@ -1,7 +1,7 @@
 package com.zavier.feignconsumer.web;
 
 import com.zavier.feignconsumer.client.ComputeClient;
-import com.zavier.feignconsumer.domain.User;
+import com.zavier.helloserviceapi.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,16 +12,16 @@ public class ConsumerController {
     @Autowired
     private ComputeClient computeClient;
 
-    @RequestMapping(value = "add", method = RequestMethod.GET)
-    public Integer add() {
-        return computeClient.add(10, 20);
+    @RequestMapping(value = "newHello", method = RequestMethod.GET)
+    public String hello() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(computeClient.hello("zheng1")).append("\n");
+        sb.append(computeClient.hello("zheng2", 18)).append("\n");
+        User user = new User();
+        user.setName("zheng3");
+        user.setAge(19);
+        sb.append(computeClient.hello(user)).append("\n");
+        return sb.toString();
     }
 
-    @RequestMapping(value = "hello", method = RequestMethod.GET)
-    public String hello() {
-        User user = new User();
-        user.setName("zheng");
-        user.setAge(18);
-        return computeClient.hello(user);
-    }
 }
