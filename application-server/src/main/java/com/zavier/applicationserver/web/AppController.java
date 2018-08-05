@@ -1,6 +1,6 @@
 package com.zavier.applicationserver.web;
 
-import com.zavier.applicationserver.domain.User;
+import com.zavier.helloserviceapi.dto.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
